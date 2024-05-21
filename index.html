@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>Security Invocation</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <h1>Welcome to Security Invocation</h1>
-    <form action="/search" method="POST">
-        <input type="text" name="query" placeholder="Search..." id="searchBox">
-        <button type="submit">Search</button>
-    </form>
+    <input type="text" id="searchInput" placeholder="Search...">
+    <button onclick="performSearch()">Search</button>
+    <div id="searchResults"></div>
 </body>
 </html>
