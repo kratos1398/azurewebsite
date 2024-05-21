@@ -1,32 +1,18 @@
 const express = require('express');
 const app = express();
-const { exec } = require('child_process');
-const path = require('path');
 
-// Middleware to serve static files
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(express.urlencoded({ extended: true }));
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+app.use(express.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
+app.use(express.static('public')); // Ensure your static files are being served correctly
 
 app.post('/search', (req, res) => {
-    const { query } = req.body;
-    // Intentionally vulnerable code for demonstration purposes
-    exec(query, (error, stdout, stderr) => {
-        if (error) {
-            return res.send(`Error: ${error.message}`);
-        }
-        if (stderr) {
-            return res.send(`Stderr: ${stderr}`);
-        }
-        res.send(`Result: ${stdout}`);
-    });
+    const searchQuery = req.body.query; // Ensure this matches the name attribute in your HTML form input
+    if (!searchQuery) {
+        return res.status(400).send('Search query is required.');
+    }
+    res.send(`Result: ${searchQuery}`); // Echo the search query for testing
 });
 
-const port = process.env.PORT || 3000; // Default to 3000 if not specified by the environment
+const port = process.env.PORT || 3000; // Use the environment variable PORT, or 3000 if it's not set
 app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
+    console.log(`Server running on port ${port}`);
 });
