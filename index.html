@@ -3,27 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Security Invocation</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="Security Invocation Logo" class="logo">
-        <nav>
-            <button class="nav-btn">Home</button>
-            <button class="nav-btn">About Us</button>
-            <button class="nav-btn">Services</button>
-            <button class="nav-btn">Contact</button>
-        </nav>
-    </header>
-    <main>
-        <h1>Welcome to Security Invocation</h1>
-        <p>Your trusted partner in cybersecurity.</p>
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Search...">
-            <button onclick="executeSearch()">Search</button>
-        </div>
-    </main>
-    <script src="script.js"></script>
+    <h1>Welcome to Security Invocation</h1>
+    <form action="/search" method="POST">
+        <input type="text" name="query" placeholder="Search..." id="searchBox">
+        <button type="submit">Search</button>
+    </form>
 </body>
 </html>
